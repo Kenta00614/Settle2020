@@ -31,11 +31,18 @@
 
     <!-- 施設一覧表示 -->
     <h2>施設一覧</h2>
-    <c:forEach var="facility" items="${facilityList}">
-        <div>
-            <p>${facility.fac_name} (${facility.getStrCategory()})</p>
-            <a href="FacilityDetailServlet?facId=${facility.fac_id}">詳細ページへ</a>
-        </div>
-    </c:forEach>
+    <%
+        List<Facility> facilityList = (List<Facility>) request.getAttribute("facilityList");
+        if (facilityList != null) {
+            for (Facility facility : facilityList) {
+                out.println("<div>");
+                out.println("<p>" + facility.getFac_name() + " (" + facility.getStrCategory() + ")</p>");
+                out.println("<a href=\"FacilityDetailServlet?facId=" + facility.getFac_id() + "\">詳細ページへ</a>");
+                out.println("</div>");
+            }
+        } else {
+            out.println("<p>施設が見つかりませんでした。</p>");
+        }
+    %>
 </body>
 </html>
