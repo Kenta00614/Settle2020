@@ -21,12 +21,12 @@ public class FacilitySelect extends HttpServlet {
 
         try {
             FacilityDAO dao = new FacilityDAO();
-            List<Facility> facilityList = dao.getFacilityInfos();
+            List<Facility> facilityList = dao.getFacilityByCategory(category);
 
             if (!facilityList.isEmpty()) {
-                Facility selectedFacility = facilityList.get(0);
-                request.setAttribute("facilityName", selectedFacility.getFac_name());
-                request.getRequestDispatcher("top.jsp").forward(request, response);
+
+                request.setAttribute("facilityList", facilityList);
+                request.getRequestDispatcher("facilitySelect.jsp").forward(request, response);
             } else {
                 response.sendRedirect("noFacilityFound.jsp"); // 該当施設がない場合の遷移先
             }
