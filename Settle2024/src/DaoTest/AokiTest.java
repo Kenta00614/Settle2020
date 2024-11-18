@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ResaleDAO;
+
 
 
 @WebServlet(urlPatterns={"/DaoTest/aokitest"})
@@ -20,10 +22,10 @@ public class AokiTest extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 
-			//PurchaseDAO pd = new PurchaseDAO();
-			//int num = pd.
+			ResaleDAO rd = new ResaleDAO();
+			int num = rd.countTranFlg(192, 4);
 
-			//out.println();
+			out.println(num);
 
 
 		} catch(Exception e) {
